@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from "@angular/core";
+import { ProductListComponent } from "../products/product-list.component";
 
 @Component({
   selector: 'pm-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `
+    <div><h1>{{pageTitle}}</h1>
+      <pm-products></pm-products>
+    </div>
+  `,
+  imports: [ProductListComponent]
 })
+
 export class AppComponent {
-  title = 'apm-new';
+  pageTitle: string = 'Acme Product Management';
 }
+
+// import { Component } from '@angular/core';
+// import { RouterOutlet } from '@angular/router';
+
+// @Component({
+//   selector: 'pm-root',
+//   imports: [RouterOutlet],
+//   templateUrl: './app.component.html',
+//   styleUrl: './app.component.css'
+// })
+// export class AppComponent {
+//   title = 'apm-new';
+// }
