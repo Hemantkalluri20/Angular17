@@ -1,13 +1,18 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'pm-products',
     templateUrl: './product-list.component.html',
-    imports: [CommonModule]
+    imports: [FormsModule,CommonModule]
 })
 export class ProductListComponent {
     pageTitle: string = 'Product List';
+    imageWidth: number = 50;
+    imageMargin: number = 2;
+    listFilter: string = 'cart';
+    showImage: boolean = false;
     products: any[] = [
         {
             "productId": 1,
@@ -59,5 +64,8 @@ export class ProductListComponent {
             "starRating": 4.6,
             "imageUrl": "assets/images/xbox-controller.png"
           }
-    ]
+    ];
+    toggleImage(): void {
+        this.showImage = !this.showImage;
+    }
 }
