@@ -1,0 +1,15 @@
+th {
+    text-align: left;
+    color: rgb(224, 6, 6);
+}
+
+card-header {
+    color: rgb(224, 6, 6);
+    font-size: 200%;
+    text-align: left;
+}
+
+h1 {
+    color: rgb(4, 51, 102);
+    font-family: 'Times New Roman', Times, serif;
+}
