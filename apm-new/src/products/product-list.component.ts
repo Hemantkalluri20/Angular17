@@ -1,21 +1,36 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormsModule } from '@angular/forms';
+import { IProduct } from "./products";
+import { ConvertToSpacesPipe } from "../shared/convert-to-space.pipe";
 
 @Component({
   selector: 'pm-products',
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule, ConvertToSpacesPipe]
 
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
   pageTitle: string = 'Product List';
   imageWidth: number = 50;
   imageMargin: number = 2;
-  listFilter: string = '';
+  filteredProducts: IProduct[] = [];
+
+
+  private _listFilter: string = '';
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    console.log('In setter:', value);
+    this.filteredProducts = this.performFilter(this._listFilter);
+  }
+
   showImage: boolean = false;
-  products: any[] = [
+  products: IProduct[] = [
     {
       "productId": 1,
       "productName": "Leaf Rake",
@@ -24,7 +39,7 @@ export class ProductListComponent {
       "description": "Leaf rake with 48-inch wooden handle.",
       "price": 19.95,
       "starRating": 3.2,
-      "imageUrl": "assets/images/leaf_rake.png"
+      "imageUrl": "/src/assets/images/leaf_rake.png"
     },
     {
       "productId": 2,
@@ -70,6 +85,13 @@ export class ProductListComponent {
   toggleImage(): void {
     this.showImage = !this.showImage;
   }
-
-
-}
+  ngOnInit(): void {
+    console.log('Productlist oninit')
+    this._listFilter = 'cart'
+  }
+  
+  performFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: IProduct) => product.productName.toLocaleLowerCase().includes(filterBy));
+  }
+  }
