@@ -6,7 +6,7 @@ import { ConvertToSpacesPipe } from "../shared/pipes/convert-to-space.pipe";
 import { ProductService } from "./product.service";
 
 @Component({
-  selector: 'pm-products',
+  // selector: 'pm-products', // selctor no need as we are using routing in the app component
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
   providers:[ProductService],
