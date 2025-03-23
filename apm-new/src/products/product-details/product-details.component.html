@@ -2,12 +2,16 @@
     <div class='card-header'>
         {{pageTitle}}
     </div>
-    <!-- <div class='card-body' *ngIf='product'></div> -->
-
+    <div class='card-body' *ngIf='product'></div>
+    <h2>{{ this.product?.productName }}</h2>
+    <p><strong>Code:</strong> {{ this.product?.productCode }}</p>
+    <p><strong>Price:</strong> {{ this.product?.price }}</p>
+    <p><strong>Release Date:</strong> {{ this.product?.releaseDate }}</p>
+    <img [src]="this.product?.imageUrl" alt="{{ this.product?.productName }}" width="200">
+    <p><strong>Rating:</strong> {{ this.product?.starRating }}</p>
 </div>
 <div class='card-footer'>
     <button class='btn btn-outline-secondary' style='width: 80px;' (click)='onBack()'>
         <i class=' fa fa-chevron-left'></i>Back
     </button>
-
 </div>

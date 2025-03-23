@@ -22,6 +22,7 @@ export class ProductListComponent implements OnInit {
   filteredProducts: IProduct[] = [];
   errorMessage: string = '';
   sub: any;
+  product: IProduct | undefined;
 
   private _listFilter: string = '';
   private _productService;
@@ -31,7 +32,25 @@ export class ProductListComponent implements OnInit {
 
   }
   viewProduct(productId: number) {
-    this.router.navigate(['/products', productId]);
+    this.productService.getProductById(productId).subscribe(product => {
+      if(product)
+      {
+
+      
+      this.product = product;
+      console.log('Product Details:', this.product);
+      
+    
+    this.router.navigate(['/products', productId],{
+      queryParams:{
+        productName: this.product?.productName,
+        productCode: this.product?.productCode,
+        desciption: this.product?.description,
+        starRating: this.product?.starRating
+      }
+    });
+    }
+    })
   }
 
   get listFilter(): string {
