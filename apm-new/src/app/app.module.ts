@@ -22,6 +22,7 @@ import { WelcomeComponent } from '../home/welcome.component';
     CommonModule, 
     FormsModule
   ],
+  bootstrap:[AppComponent],
   providers: []
 })
 export class AppModule { }

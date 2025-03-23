@@ -4,13 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { IProduct } from "./products";
 import { ConvertToSpacesPipe } from "../shared/pipes/convert-to-space.pipe";
 import { ProductService } from "./product.service";
+import { Router, RouterLink } from "@angular/router";
+
 
 @Component({
   // selector: 'pm-products', // selctor no need as we are using routing in the app component
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
   providers:[ProductService],
-  imports: [FormsModule, CommonModule, ConvertToSpacesPipe]
+  imports: [FormsModule, CommonModule, ConvertToSpacesPipe,RouterLink]
 
 })
 export class ProductListComponent implements OnInit {
@@ -24,9 +26,12 @@ export class ProductListComponent implements OnInit {
   private _listFilter: string = '';
   private _productService;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) { 
     this._productService= productService;
 
+  }
+  viewProduct(productId: number) {
+    this.router.navigate(['/products', productId]);
   }
 
   get listFilter(): string {
